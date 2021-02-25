@@ -6,3 +6,27 @@ This is a small ongoing series that discusses what it takes to build a basic API
 
 - Read more at: [https://web-crunch.com/posts/create-a-basic-api-with-ruby-on-rails](https://web-crunch.com/posts/create-a-basic-api-with-ruby-on-rails)
 - [Subscribe to the YouTube channel](https://youtube.com/c/webcrunch)
+
+## Docker
+
+Docker has been added with docker-compose to make the execution a lot easier.
+
+To get up and running with run the following:
+
+```
+docker-commpose up
+```
+
+After the server is running, run the following command to create the database schema:
+
+```
+docker-compose exec web /myapp/bin/rails db:migrate RAILS_ENV=development
+```
+
+Next, run the following command to fill up some data from the seeds:
+
+```
+docker-compose exec web /myapp/bin/rails db:seed RAILS_ENV=development
+```
+
+Consequently, we can try `http://localhost:3000/api/v1/bands` and it should show us 5 bands and 4 members for the first band `The Beatles`.
